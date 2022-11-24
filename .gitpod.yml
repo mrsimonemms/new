@@ -1,5 +1,7 @@
 tasks:
-  - command: |
+  - before: |
+      curl -sfL gpm.simonemms.com | bash
+    command: |
       # Install commitlint
       npm i -g @commitlint/{config-conventional,cli}
 
