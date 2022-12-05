@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+if [ -e .commit ]; then
+  echo "Generating table of contents for README.md"
+
+  rm .commit
+  npx --yes markdown-toc ./README.md -i
+  git add ./README.md
+  git commit --amend -C HEAD --no-verify
+fi
+exit
