@@ -1,15 +1,10 @@
 tasks:
   - before: |
       curl -sfL gpm.simonemms.com | bash
+
+      gpm install pre-commit
     command: |
-      # Install commitlint
-      npm i -g @commitlint/{config-conventional,cli}
-
-      # Install husky
-      npm i -g husky
-
-      # Activate hooks
-      husky install
+      pre-commit install --install-hooks
 
 vscode:
   extensions:
