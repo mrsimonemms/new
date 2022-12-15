@@ -3,7 +3,7 @@ tasks:
       curl -sfL gpm.simonemms.com | bash
 
       gpm install pre-commit
-    command: |
+
       pre-commit install --install-hooks
 
 vscode:
