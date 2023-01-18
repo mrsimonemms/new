@@ -1,10 +1,19 @@
 tasks:
-  - before: |
+  - name: Setup
+    before: |
       curl -sfL gpm.simonemms.com | bash
 
       gpm install pre-commit
 
+      gp sync-done setup
+
       pre-commit install --install-hooks
+
+      gp sync-done pre-commit
+
+      exit 0
+  - command: |
+      gp sync-await setup
 
 vscode:
   extensions:
