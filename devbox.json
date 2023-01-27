@@ -5,7 +5,7 @@
   ],
   "shell": {
     "init_hook": [
-      "pre-commit install --install-hooks"
+      "pre-commit install --install-hooks -t pre-commit -t commit-msg"
     ]
   },
   "nixpkgs": {
