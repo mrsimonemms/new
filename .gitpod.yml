@@ -19,3 +19,4 @@ vscode:
   extensions:
     - donjayamanne.git-extension-pack
     - EditorConfig.EditorConfig
+    - waderyan.gitblame
