@@ -12,6 +12,9 @@
 A blank project for getting started. This is configured for [Gitpod](https://gitpod.io)
 and [devbox](https://www.jetpack.io/devbox).
 
+Run `cruft create https://github.com/mrsimonemms/new --skip=.git` to create a new
+repo.
+
 ## Open in Gitpod
 
 * [Open in Gitpod](https://gitpod.io/from-referrer/)
