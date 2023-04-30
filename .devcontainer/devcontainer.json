@@ -13,6 +13,7 @@
     }
   },
   "postStartCommand": {
+    "cookieninja-cruft": "pip install cookieninja cruft",
     "pre-commit": "pre-commit install --install-hooks -t pre-commit -t commit-msg"
   }
 }
