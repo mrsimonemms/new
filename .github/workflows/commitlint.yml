@@ -1,8 +1,13 @@
 name: Commit lint
 permissions: read-all
 on:
-  - pull_request
-  - push
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 jobs:
   commitlint:
     runs-on: ubuntu-latest
