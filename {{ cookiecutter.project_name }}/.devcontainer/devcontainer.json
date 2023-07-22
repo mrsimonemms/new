@@ -9,11 +9,13 @@
         "donjayamanne.git-extension-pack",
         "EditorConfig.EditorConfig",
         "waderyan.gitblame",
-        "GitHub.vscode-github-actions"
+        "GitHub.vscode-github-actions",
+        "ms-vscode.makefile-tools"
       ]
     }
   },
   "postStartCommand": {
+    "cookieninja-cruft": "pip install cruft",
     "pre-commit": "pre-commit install --install-hooks -t pre-commit -t commit-msg"
   }
 }
