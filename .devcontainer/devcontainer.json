@@ -9,7 +9,8 @@
         "donjayamanne.git-extension-pack",
         "EditorConfig.EditorConfig",
         "waderyan.gitblame",
-        "GitHub.vscode-github-actions"
+        "GitHub.vscode-github-actions",
+        "ms-vscode.makefile-tools"
       ]
     }
   },
