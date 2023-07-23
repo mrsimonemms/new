@@ -14,7 +14,7 @@
       ]
     }
   },
-  "postStartCommand": {
+  "postCreateCommand": {
     "cookieninja-cruft": "pip install cookieninja cruft"
   }
 }
