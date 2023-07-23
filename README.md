@@ -2,11 +2,9 @@
 
 A blank project for getting started.
 
-Run `cruft create https://github.com/mrsimonemms/new --skip=.git` to create a new
-repo.
-
 <!-- toc -->
 
+* [Templates](#templates)
 * [Contributing](#contributing)
   * [Open in Gitpod](#open-in-gitpod)
   * [Open in a container](#open-in-a-container)
@@ -14,6 +12,13 @@ repo.
 <!-- Regenerate with "pre-commit run -a markdown-toc" -->
 
 <!-- tocstop -->
+
+## Templates
+
+Run `cruft create https://github.com/mrsimonemms/new --skip=.git --directory <name>`
+to create a new repo.
+
+* [Blank](/blank/) - Simple blank project. If unsure, use this one
 
 ## Contributing
 
