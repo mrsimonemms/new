@@ -1,12 +1,6 @@
 {
-  "name": "devcontainer",
-  "image": "ghcr.io/mrsimonemms/devcontainers/full",
-  "features": {
-    "ghcr.io/mrsimonemms/devcontainers/cobra-cli:0": {}
-  },
   "customizations": {
     "vscode": {
-      "settings": {},
       "extensions": [
         "donjayamanne.git-extension-pack",
         "EditorConfig.EditorConfig",
@@ -14,9 +8,15 @@
         "GitHub.vscode-github-actions",
         "ms-vscode.makefile-tools",
         "golang.go"
-      ]
+      ],
+      "settings": {}
     }
   },
+  "features": {
+    "ghcr.io/mrsimonemms/devcontainers/cobra-cli:0": {}
+  },
+  "image": "ghcr.io/mrsimonemms/devcontainers/full",
+  "name": "devcontainer",
   "postCreateCommand": {
     "bootstrap": "ln -s $PWD/.cobra.yaml $HOME/.cobra.yaml && if [ ! -f \"go.mod\" ]; then go mod init \"{{ cookiecutter.repo }}\"; fi && if [ ! -f \"main.go\" ]; then cobra-cli init && go mod tidy; fi",
     "cookieninja-cruft": "pip install cruft",

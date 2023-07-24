@@ -1,5 +1,4 @@
 {
-  "default": true,
   "MD007": {
     "indent": 2
   },
@@ -8,5 +7,6 @@
     "tables": false
   },
   "MD032": false,
-  "MD033": false
+  "MD033": false,
+  "default": true
 }

@@ -1,19 +1,19 @@
 {
-  "name": "devcontainer",
-  "image": "ghcr.io/mrsimonemms/devcontainers/full",
-  "features": {},
   "customizations": {
     "vscode": {
-      "settings": {},
       "extensions": [
         "donjayamanne.git-extension-pack",
         "EditorConfig.EditorConfig",
         "waderyan.gitblame",
         "GitHub.vscode-github-actions",
         "ms-vscode.makefile-tools"
-      ]
+      ],
+      "settings": {}
     }
   },
+  "features": {},
+  "image": "ghcr.io/mrsimonemms/devcontainers/full",
+  "name": "devcontainer",
   "postCreateCommand": {
     "cookieninja-cruft": "pip install cruft"
   }
