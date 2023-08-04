@@ -46,19 +46,8 @@ jobs:
       - test
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set up Go
-        uses: actions/setup-go@v3
         with:
-          go-version: '>=1.20.0'
-
-      - run: go version
-
-      - name: Install Go dependencies
-        run: go install ./...
-
-      - name: Lint Go
-        uses: golangci/golangci-lint-action@v3
+          fetch-depth: 0 # Required for goreleaser changelog to work correctly
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -124,6 +113,12 @@ jobs:
           platforms: {{ '${{ steps.docker.outputs.platforms }}' }}
           push: {{ '${{ github.ref == \'refs/heads/main\' }}' }}
           tags: {{ '${{ steps.docker.outputs.image_name }}' }}
+
+      - name: Set up Go
+        if: steps.branch-name.outputs.is_tag == 'true'
+        uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.20.0'
 
       - name: Run GoReleaser
         if: steps.branch-name.outputs.is_tag == 'true'
