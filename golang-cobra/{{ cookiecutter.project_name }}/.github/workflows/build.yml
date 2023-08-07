@@ -99,6 +99,7 @@ jobs:
             echo "version=development" >> "$GITHUB_OUTPUT"
           fi
 
+          echo "container_tagged_image=ghcr.io/${GITHUB_REPOSITORY,,}:${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
           echo "commit_id=${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
           echo "gitRepo=github.com/${GITHUB_REPOSITORY}" >> "$GITHUB_OUTPUT"
 
@@ -112,7 +113,7 @@ jobs:
             VERSION={{ '${{ steps.docker.outputs.version }}' }}
           platforms: {{ '${{ steps.docker.outputs.platforms }}' }}
           push: {{ '${{ github.ref == \'refs/heads/main\' }}' }}
-          tags: {{ '${{ steps.docker.outputs.image_name }}' }}
+          tags: {{ '${{ steps.docker.outputs.image_name }},${{ steps.docker.outputs.container_tagged_image }}' }}
 
       - name: Set up Go
         if: steps.branch-name.outputs.is_tag == 'true'
