@@ -2,10 +2,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "donjayamanne.git-extension-pack",
-        "EditorConfig.EditorConfig",
-        "waderyan.gitblame",
-        "GitHub.vscode-github-actions",
         "ms-vscode.makefile-tools"
       ],
       "settings": {}
