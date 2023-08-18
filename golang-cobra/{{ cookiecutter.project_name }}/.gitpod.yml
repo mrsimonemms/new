@@ -1,9 +1,16 @@
-image:
-  file: .gitpod.Dockerfile
-
 tasks:
   - name: Setup
     command: |
+      curl -sfL gpm.simonemms.com | bash
+
+      gpm install pre-commit
+
+      pip install cookieninja cruft
+
+      go install github.com/spf13/cobra-cli@latest
+
+      gp sync-done setup
+
       pre-commit install --install-hooks -t pre-commit -t commit-msg
 
       gp sync-done pre-commit
@@ -14,6 +21,8 @@ tasks:
         go install ./...
       fi
     command: |
+      gp sync-await setup
+
       # Copy .cobra.yaml to $HOME
       ln -s $PWD/.cobra.yaml $HOME/.cobra.yaml
 
@@ -34,4 +43,7 @@ vscode:
   extensions:
     - donjayamanne.git-extension-pack
     - EditorConfig.EditorConfig
+    - waderyan.gitblame
+    - GitHub.vscode-github-actions
+    - ms-vscode.makefile-tools
     - golang.go
