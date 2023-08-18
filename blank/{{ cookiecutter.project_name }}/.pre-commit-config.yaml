@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/mrsimonemms/pre-commit-hooks
-    rev: v1.0.0
+    rev: v1.1.0
     hooks:
       - id: license-eye
   - repo: https://github.com/pre-commit/pre-commit-hooks

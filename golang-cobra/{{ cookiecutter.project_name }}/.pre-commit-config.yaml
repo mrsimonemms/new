@@ -1,8 +1,13 @@
 repos:
   - repo: https://github.com/mrsimonemms/pre-commit-hooks
-    rev: v1.0.0
+    rev: v1.1.0
     hooks:
       - id: license-eye
+      - id: go-fmt-import
+      - id: go-vet
+      - id: gofumpt
+      - id: go-err-check
+      - id: go-static-check
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
@@ -36,11 +41,3 @@ repos:
     rev: v1.53.2
     hooks:
       - id: golangci-lint
-  - repo: https://github.com/Bahjat/pre-commit-golang
-    rev: v1.0.3
-    hooks:
-      - id: go-fmt-import
-      - id: go-vet
-      - id: gofumpt
-      - id: go-err-check
-      - id: go-static-check

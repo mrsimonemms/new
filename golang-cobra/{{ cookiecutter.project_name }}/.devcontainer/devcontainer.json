@@ -16,12 +16,7 @@
   },
   "postCreateCommand": {
     "bootstrap": "ln -s $PWD/.cobra.yaml $HOME/.cobra.yaml && if [ ! -f \"go.mod\" ]; then go mod init \"{{ cookiecutter.repo }}\"; fi && if [ ! -f \"main.go\" ]; then cobra-cli init && go mod tidy; fi",
-    "cookieninja-cruft": "pip install cruft",
-    "errcheck": "go install github.com/kisielk/errcheck@latest",
-    "gofumpt": "go install mvdan.cc/gofumpt@latest",
-    "goimports": "go install golang.org/x/tools/cmd/goimports@latest",
-    "golangci-lint": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest",
-    "staticcheck": "go install honnef.co/go/tools/cmd/staticcheck@latest"
+    "cookieninja-cruft": "pip install cruft"
   },
   "containerEnv": {
     "GIT_REPO": "{{ cookiecutter.repo }}"
