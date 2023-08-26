@@ -15,8 +15,7 @@
     }
   },
   "postCreateCommand": {
-    "bootstrap": "ln -s $PWD/.cobra.yaml $HOME/.cobra.yaml && if [ ! -f \"go.mod\" ]; then go mod init \"{{ cookiecutter.repo }}\"; fi && if [ ! -f \"main.go\" ]; then cobra-cli init && go mod tidy; fi",
-    "cookieninja-cruft": "pip install cruft"
+    "bootstrap": "ln -s $PWD/.cobra.yaml $HOME/.cobra.yaml && if [ ! -f \"go.mod\" ]; then go mod init \"{{ cookiecutter.repo }}\"; fi && if [ ! -f \"main.go\" ]; then cobra-cli init && go mod tidy; fi"
   },
   "containerEnv": {
     "GIT_REPO": "{{ cookiecutter.repo }}"
