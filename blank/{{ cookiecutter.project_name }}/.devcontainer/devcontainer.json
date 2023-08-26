@@ -9,8 +9,5 @@
   },
   "features": {},
   "image": "ghcr.io/mrsimonemms/devcontainers/full",
-  "name": "devcontainer",
-  "postCreateCommand": {
-    "cookieninja-cruft": "pip install cruft"
-  }
+  "name": "devcontainer"
 }
