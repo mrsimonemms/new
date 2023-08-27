@@ -9,6 +9,9 @@ header:
     - .*
     - "go.*"
     - "**/*.{json,md,yml,yaml}"
+    {%- if cookiecutter.type == "svelte" %}
+    - "**/*.svelte"
+    {%- endif %}
   comment: on-failure
 
 dependency:

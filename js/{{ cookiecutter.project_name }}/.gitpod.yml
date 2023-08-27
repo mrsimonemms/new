@@ -28,6 +28,7 @@ tasks:
       {%- if cookiecutter.type == "nestjs" %}
       docker-compose up app
       {%- elif cookiecutter.type == "svelte" %}
+      npm run dev -- --host=0.0.0.0
       {%- endif %}
 
 vscode:
