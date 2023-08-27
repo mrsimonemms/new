@@ -12,3 +12,7 @@ blank:
 golang-cobra:
 	@$(MAKE) .create DIRECTORY=golang-cobra
 .PHONY: golang-cobra
+
+js:
+	@$(MAKE) .create DIRECTORY=js
+.PHONY: js
