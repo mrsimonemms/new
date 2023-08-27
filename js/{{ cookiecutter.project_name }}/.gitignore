@@ -9,3 +9,6 @@ Thumbs.db
 .commit
 .devbox
 .envrc
+
+coverage
+.nyc_output

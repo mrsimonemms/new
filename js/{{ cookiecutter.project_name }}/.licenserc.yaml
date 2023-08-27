@@ -10,12 +10,7 @@ header:
     - "go.*"
     - "**/*.{json,md,yml,yaml}"
   comment: on-failure
-  language:
-    Go:
-      extensions:
-        - ".go"
-      comment_style_id: SlashAsterisk
 
 dependency:
   files:
-    - go.mod # If this is a Go project.
+    - package.json # If this is a npm project.

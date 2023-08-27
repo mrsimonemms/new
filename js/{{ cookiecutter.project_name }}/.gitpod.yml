@@ -25,7 +25,10 @@ tasks:
       gp sync-await setup
       gp sync-await install
 
-      npm run dev
+      {%- if cookiecutter.type == "nestjs" %}
+      docker-compose up app
+      {%- elif cookiecutter.type == "svelte" %}
+      {%- endif %}
 
 vscode:
   extensions:
@@ -34,3 +37,6 @@ vscode:
     - waderyan.gitblame
     - GitHub.vscode-github-actions
     - ms-vscode.makefile-tools
+    {%- if cookiecutter.type == "svelte" %}
+    - svelte.svelte-vscode
+    {%- endif %}

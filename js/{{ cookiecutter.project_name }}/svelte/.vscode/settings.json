@@ -13,8 +13,7 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
-  {%- if cookiecutter.type == "svelte" %},
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -24,5 +23,4 @@
   "[svelte]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
-  {%- endif %}
 }
