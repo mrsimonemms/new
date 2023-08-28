@@ -9,6 +9,7 @@ header:
     - .*
     - "go.*"
     - "**/*.{json,md,yml,yaml}"
+    - "**/.gitkeep"
     {%- if cookiecutter.type == "svelte" %}
     - "**/*.svelte"
     {%- endif %}
