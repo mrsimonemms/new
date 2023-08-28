@@ -15,10 +15,14 @@ A blank project for getting started.
 
 ## Templates
 
-Run `make <repo-name>` to create a new repo.
+To create a new repo, either run:
+* `make <dir>`
+* `cruft create https://github.com/mrsimonemms/new --skip=.git --directory <dir>`
 
-* [Blank](/blank/) - Simple blank project. If unsure, use this one
-* [Golang Cobra](/golang-cobra/) - Golang Cobra starter project
+The available templates are:
+* [blank](/blank/) - Simple blank project. If unsure, use this one
+* [golang-cobra](/golang-cobra/) - Golang Cobra starter project
+* [js](/js/) - JavaScript starter project
 
 ## Contributing
 
