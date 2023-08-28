@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - "v*.*.*"
   pull_request:
     branches:
       - main
@@ -16,31 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up JS
-        uses: actions/setup-node@v3
+      - name: Set up Go
+        uses: actions/setup-go@v4
         with:
-          node-version: lts/*
-          cache: "npm"
+          go-version-file: go.mod
 
-      - name: Run dependencies
-        run: |
-          docker-compose up -d mysql
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
 
-      - name: Install and test
-        env:
-          DB_TYPE: mysql
-          DB_HOST: localhost
-          DB_USERNAME: app
-          DB_PASSWORD: password
-          DB_NAME: app
-          DB_PORT: "4000" # MySQL must not run on port 3306 - this conflicts with GitHub Actions
-          DB_MIGRATIONS_RUN: "true"
-          DB_SYNC: "false"
-        run: |
-          npm ci
-          npm run lint
-          npm test
-          npm run test:e2e
+      - name: Install dependencies
+        run: go install ./...
+
+      - name: go-vet
+        run: go vet -v ./...
+
+      - uses: pre-commit/action@v3.0.0
 
   build:
     runs-on: ubuntu-latest
