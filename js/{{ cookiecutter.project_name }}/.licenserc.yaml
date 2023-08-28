@@ -1,0 +1,20 @@
+header:
+  license:
+    spdx-id: Apache-2.0
+    copyright-owner: "{{ cookiecutter.author }}"
+  paths-ignore:
+    - dist
+    - tmp
+    - LICENSE
+    - .*
+    - "go.*"
+    - "**/*.{json,md,yml,yaml}"
+    - "**/.gitkeep"
+    {%- if cookiecutter.type == "svelte" %}
+    - "**/*.svelte"
+    {%- endif %}
+  comment: on-failure
+
+dependency:
+  files:
+    - package.json # If this is a npm project.

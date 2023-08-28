@@ -1,0 +1,17 @@
+{
+  "image": "ghcr.io/mrsimonemms/devcontainers/full",
+  "name": "devcontainer",
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.makefile-tools",
+        "esbenp.prettier-vscode"
+        {%- if cookiecutter.type == "svelte" %},
+        "svelte.svelte-vscode"
+        {%- endif %}
+      ],
+      "settings": {}
+    }
+  }
+}
