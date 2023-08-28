@@ -18,4 +18,9 @@ jobs:
         with:
           fetch-depth: 0 # fetch-depth is required
 
+      {%- if cookiecutter.type == "svelte" %}
+      # This needs a generated dependency - doesn't add anything to this test
+      - run: rm tsconfig.json
+      {%- endif %}
+
       - uses: wagoid/commitlint-github-action@v5

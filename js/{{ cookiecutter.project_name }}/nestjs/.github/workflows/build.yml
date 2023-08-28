@@ -48,8 +48,6 @@ jobs:
       - test
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Required for goreleaser changelog to work correctly
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -116,19 +114,3 @@ jobs:
           platforms: {{ '${{ steps.docker.outputs.platforms }}' }}
           push: {{ '${{ github.ref == \'refs/heads/main\' }}' }}
           tags: {{ '${{ steps.docker.outputs.image_name }},${{ steps.docker.outputs.container_tagged_image }}' }}
-
-      - name: Set up Go
-        if: steps.branch-name.outputs.is_tag == 'true'
-        uses: actions/setup-go@v3
-        with:
-          go-version: '>=1.20.0'
-
-      - name: Run GoReleaser
-        if: steps.branch-name.outputs.is_tag == 'true'
-        uses: goreleaser/goreleaser-action@v4
-        with:
-          version: latest
-          args: release --clean
-        env:
-          GIT_REPO: {{ '${{ steps.docker.outputs.gitRepo }}' }}
-          GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
