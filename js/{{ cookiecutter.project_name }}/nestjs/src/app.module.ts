@@ -1,11 +1,11 @@
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module } from '@nestjs/common';
-import { LoggerModule, Params, PinoLogger } from 'nestjs-pino';
-import config from './config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { PinoTypeOrmLogger } from './lib/pinoTypeOrmLogger';
+import { LoggerModule, Params, PinoLogger } from 'nestjs-pino';
 import { LoggerOptions } from 'typeorm';
+import config from './config';
 import { HealthModule } from './health/health.module';
+import { PinoTypeOrmLogger } from './lib/pinoTypeOrmLogger';
 
 @Module({
   imports: [
