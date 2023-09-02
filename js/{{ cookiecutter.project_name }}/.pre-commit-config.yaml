@@ -40,6 +40,8 @@ repos:
         args:
           - --plugin
           - prettier-plugin-svelte
+          - --plugin
+          - prettier-plugin-organize-imports
         {%- endif %}
         stages:
           - pre-commit
