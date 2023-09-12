@@ -45,3 +45,13 @@ repos:
         {%- endif %}
         stages:
           - pre-commit
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: 'v8.49.0'
+    hooks:
+      - id: eslint
+        {%- if cookiecutter.type == "svelte" %}
+        files: \.([jt]sx?|svelte)$ # *.js, *.jsx *.ts, *.tsx and *.svelte
+        {%- else %}
+        files: \.[jt]sx?$ # *.js, *.jsx *.ts and *.tsx
+        {%- endif %}
+        types: [file]
