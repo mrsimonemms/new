@@ -88,6 +88,7 @@ jobs:
 
             echo "image_name=${IMG_NAME}" >> "$GITHUB_OUTPUT"
             echo "platforms=linux/amd64,linux/arm64,linux/arm/v7" >> "$GITHUB_OUTPUT"
+            echo "push=true" >> "$GITHUB_OUTPUT"
           else
             # Use branch naming convention
             TAG="branch-{{ '${{ steps.branch-name.outputs.current_branch }}' }}"
@@ -98,6 +99,7 @@ jobs:
 
             echo "image_name=ghcr.io/${GITHUB_REPOSITORY,,}:${TAG}" >> "$GITHUB_OUTPUT"
             echo "platforms=linux/amd64" >> "$GITHUB_OUTPUT"
+            echo "push={{ '${{ github.ref == \'refs/heads/main\' }}' }}" >> "$GITHUB_OUTPUT"
           fi
 
           if [ "{{ '${{ steps.branch-name.outputs.is_tag }}' }}" = "true"  ];
@@ -120,7 +122,7 @@ jobs:
             GIT_REPO={{ '${{ steps.docker.outputs.gitRepo }}' }}
             VERSION={{ '${{ steps.docker.outputs.version }}' }}
           platforms: {{ '${{ steps.docker.outputs.platforms }}' }}
-          push: {{ '${{ github.ref == \'refs/heads/main\' }}' }}
+          push: {{ '${{ steps.docker.outputs.push }}' }}
           tags: {{ '${{ steps.docker.outputs.image_name }},${{ steps.docker.outputs.container_tagged_image }}' }}
 
       - name: Set up Go
