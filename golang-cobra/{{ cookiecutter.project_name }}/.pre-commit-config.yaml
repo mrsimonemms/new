@@ -41,3 +41,7 @@ repos:
     rev: v1.54.2
     hooks:
       - id: golangci-lint
+  - repo: https://github.com/mrsimonemms/toodaloo
+    rev: v0.2.2
+    hooks:
+      - id: scan
