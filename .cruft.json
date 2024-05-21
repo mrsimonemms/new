@@ -1,0 +1,17 @@
+{
+  "template": "https://github.com/mrsimonemms/new",
+  "commit": "b7aa3518c0746e387ef3b9d225968d01c7faced0",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "project_name": "new",
+      "description": "How I scaffold my projects",
+      "author": "Simon Emms <simon@simonemms.com>",
+      "_template": "https://github.com/mrsimonemms/new"
+    }
+  },
+  "directory": "blank",
+  "skip": [
+    ".git"
+  ]
+}
