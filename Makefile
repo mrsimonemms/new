@@ -5,6 +5,14 @@ REPO ?= https://github.com/mrsimonemms/new
 	@cruft create ${REPO} --skip=.git --directory ${DIRECTORY} --checkout ${CHECKOUT}
 .PHONY: .create
 
+cruft-update:
+ifeq (,$(wildcard .cruft.json))
+	@echo "Cruft not configured"
+else
+	@cruft check || cruft update --skip-apply-ask --refresh-private-variables
+endif
+.PHONY: cruft-update
+
 .update-precommit:
 	@cd "${DIRECTORY}" && pre-commit autoupdate
 .PHONY: .update-precommit
