@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
       - id: pretty-format-json
         args:
@@ -14,7 +14,7 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v2.4.0
+    rev: v3.2.0
     hooks:
       - id: conventional-pre-commit
         stages:
@@ -24,7 +24,7 @@ repos:
     hooks:
       - id: markdown-toc
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.9.2
+    rev: v0.13.0
     hooks:
       - id: markdownlint-cli2
   - repo: https://github.com/mrsimonemms/toodaloo
