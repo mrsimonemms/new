@@ -6,7 +6,6 @@ A blank project for getting started.
 
 * [Templates](#templates)
 * [Contributing](#contributing)
-  * [Open in Gitpod](#open-in-gitpod)
   * [Open in a container](#open-in-a-container)
 
 <!-- Regenerate with "pre-commit run -a markdown-toc" -->
@@ -25,10 +24,6 @@ The available templates are:
 * [js](/js/) - JavaScript starter project
 
 ## Contributing
-
-### Open in Gitpod
-
-* [Open in Gitpod](https://gitpod.io/from-referrer/)
 
 ### Open in a container
 
