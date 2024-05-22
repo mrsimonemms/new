@@ -46,7 +46,9 @@ repos:
         stages:
           - pre-commit
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: 'v9.3.0'
+    # Pin to v8 until TS support is in GA
+    # @link https://github.com/typescript-eslint/typescript-eslint/issues/8211
+    rev: 'v8.56.0'
     hooks:
       - id: eslint
         {%- if cookiecutter.type == "svelte" %}
