@@ -13,14 +13,13 @@
     "format": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-organize-imports --write .",
     "lint": "prettier --plugin prettier-plugin-svelte --plugin prettier-plugin-organize-imports --check . && eslint .",
     "preview": "vite preview",
-    "test": "npm run test:integration && npm run test:unit",
-    "test:integration": "playwright test",
+    "test": "npm run test:unit",
     "test:unit": "vitest"
   },
   "devDependencies": {
-    "@playwright/test": "^1.44.0",
     "@sveltejs/adapter-static": "^3.0.1",
     "@sveltejs/kit": "^2.5.10",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
     "eslint": "^8.57.0",

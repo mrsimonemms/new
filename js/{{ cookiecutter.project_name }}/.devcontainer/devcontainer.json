@@ -13,5 +13,10 @@
       ],
       "settings": {}
     }
+  {%- if cookiecutter.type == "svelte" %}
+  },
+  "containerEnv": {
+    "VITE_HOST": "0.0.0.0"
+  {%- endif %}
   }
 }
