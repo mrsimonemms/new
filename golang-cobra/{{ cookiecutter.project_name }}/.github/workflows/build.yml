@@ -45,6 +45,9 @@ jobs:
       - name: go-vet
         run: go vet -v ./...
 
+      - name: go-test
+        run: go test -v ./...
+
       - uses: pre-commit/action@v3.0.1
 
   build:
