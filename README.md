@@ -22,6 +22,7 @@ The available templates are:
 * [blank](/blank/) - Simple blank project. If unsure, use this one
 * [golang-cobra](/golang-cobra/) - Golang Cobra starter project
 * [js](/js/) - JavaScript starter project
+* [terraform](/terraform/) - Terraform starter project
 
 ## Contributing
 
