@@ -13,3 +13,4 @@ Thumbs.db
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+**/.terragrunt-cache/*

@@ -42,7 +42,9 @@ repos:
       - id: terraform-docs-go
         args:
           - markdown
-          - infrastructure
+          - .
+          - --recursive
+          - --recursive-include-main=false
           - --output-file=README.md
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: "v1.91.0"
@@ -52,4 +54,4 @@ repos:
           - --args=-recursive
       - id: terraform_tflint
       - id: terraform_trivy
-      - id: terraform_validate
+      - id: terragrunt_validate

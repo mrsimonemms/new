@@ -1,7 +1,7 @@
-# Blank
+# Terraform
 
-Simple blank project. If unsure, use this one
+Terraform project with Terragrunt enabled
 
 ```shell
-make blank
+make terraform
 ```
