@@ -52,6 +52,10 @@ repos:
       - id: terraform_fmt
         args:
           - --args=-recursive
+      - id: terragrunt_fmt
+        args:
+          - --args=-recursive
       - id: terraform_tflint
       - id: terraform_trivy
+      - id: terraform_validate
       - id: terragrunt_validate
