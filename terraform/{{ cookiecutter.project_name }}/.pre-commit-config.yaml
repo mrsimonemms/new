@@ -58,4 +58,5 @@ repos:
       - id: terraform_tflint
       - id: terraform_trivy
       - id: terraform_validate
+        exclude: ^stacks
       - id: terragrunt_validate
