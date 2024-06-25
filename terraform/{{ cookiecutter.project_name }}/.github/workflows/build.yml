@@ -50,4 +50,7 @@ jobs:
           rename-to: terragrunt
           chmod: 0755
 
+      - name: Init Terragrunt
+        run: terragrunt run-all init
+
       - uses: pre-commit/action@v3.0.1
