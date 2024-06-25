@@ -42,4 +42,12 @@ jobs:
       - name: Install Trivy
         run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
 
+      - name: Install Terragrunt
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: gruntwork-io/terragrunt
+          extension-matching: disable
+          rename-to: terragrunt
+          chmod: 0755
+
       - uses: pre-commit/action@v3.0.1
