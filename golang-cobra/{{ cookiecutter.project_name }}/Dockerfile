@@ -1,6 +1,6 @@
 FROM golang AS builder
 ARG GIT_COMMIT
-ARG GIT_REPO
+ARG GIT_REPO="{{ cookiecutter.repo }}"
 ARG VERSION
 WORKDIR /app
 ADD . .
