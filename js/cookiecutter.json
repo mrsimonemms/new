@@ -3,6 +3,7 @@
   "description": "JavaScript starter project",
   "author": "Simon Emms <simon@simonemms.com>",
   "type": [
+    "blank",
     "nestjs",
     "svelte"
   ]

@@ -8,7 +8,7 @@ shopt -s dotglob
 
 cp -rf {{ cookiecutter.type }}/* ./
 
-rm -Rf nestjs svelte
+rm -Rf blank nestjs svelte
 
 git init -b main
 git add .
