@@ -13,8 +13,8 @@ RUN go build \
   -o /app/app
 ENTRYPOINT /app/app
 
-FROM alpine
-RUN apk --no-cache add ca-certificates
+FROM scratch
 WORKDIR /app
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /app/app /app
 ENTRYPOINT [ "/app/app" ]
