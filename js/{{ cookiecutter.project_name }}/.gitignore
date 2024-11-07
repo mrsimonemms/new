@@ -14,9 +14,8 @@ coverage
 .nyc_output
 
 {%- if cookiecutter.type == "svelte" %}
-.DS_Store
-node_modules
 /build
+.vercel
 /.svelte-kit
 /package
 .env
