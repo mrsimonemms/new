@@ -35,6 +35,7 @@ js:
 
 precommit-autoupdate:
 	@$(MAKE) .update-precommit DIRECTORY="blank/{{ cookiecutter.project_name }}"
+	@$(MAKE) .update-precommit DIRECTORY="golang/{{ cookiecutter.project_name }}"
 	@$(MAKE) .update-precommit DIRECTORY="golang-cobra/{{ cookiecutter.project_name }}"
 	@$(MAKE) .update-precommit DIRECTORY="js/{{ cookiecutter.project_name }}"
 .PHONY: precommit-autoupdate
