@@ -16,8 +16,6 @@ repos:
           - --allow-multiple-documents
       - id: end-of-file-fixer
       - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v3.2.0
     hooks:
