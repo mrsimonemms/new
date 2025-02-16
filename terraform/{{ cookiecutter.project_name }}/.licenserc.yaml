@@ -4,11 +4,11 @@ header:
     copyright-owner: "{{ cookiecutter.author }}"
     copyright-year: {% now 'utc', '%Y' %}
   paths-ignore:
-    - dist
-    - tmp
+    - "**/dist"
+    - "**/tmp"
     - LICENSE
-    - .*
-    - "go.*"
+    - "**/.*"
+    - "**/go.*"
     - "**/*.{json,md,yml,yaml}"
     - "**/.gitkeep"
     - "**/*.lock.hcl"
