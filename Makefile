@@ -33,11 +33,16 @@ js:
 	@$(MAKE) .create DIRECTORY=js
 .PHONY: js
 
+monorepo:
+	@$(MAKE) .create DIRECTORY=monorepo
+.PHONY: monorepo
+
 precommit-autoupdate:
 	@$(MAKE) .update-precommit DIRECTORY="blank/{{ cookiecutter.project_name }}"
 	@$(MAKE) .update-precommit DIRECTORY="golang/{{ cookiecutter.project_name }}"
 	@$(MAKE) .update-precommit DIRECTORY="golang-cobra/{{ cookiecutter.project_name }}"
 	@$(MAKE) .update-precommit DIRECTORY="js/{{ cookiecutter.project_name }}"
+	@$(MAKE) .update-precommit DIRECTORY="monorepo/{{ cookiecutter.project_name }}"
 	@$(MAKE) .update-precommit DIRECTORY="terraform/{{ cookiecutter.project_name }}"
 .PHONY: precommit-autoupdate
 

@@ -1,0 +1,11 @@
+version: v1
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - STANDARD
+    - COMMENTS
+build:
+  excludes:
+    - node_modules
