@@ -4,7 +4,7 @@ PROTO = ./proto
 
 copy-proto:
 	@for dir in $(shell ls ${APPS}); do \
-		cp -rf ${PROTO} ${APPS}/$$dir; \
+		cp -rf ${PROTO} ${APPS}/$$dir || true; \
 	done
 .PHONY: copy-proto
 
@@ -25,6 +25,11 @@ dev:
 destroy:
 	@docker compose down
 .PHONY: destroy
+
+generate-db-migrations:
+	$(shell if [ -z "${NAME}" ]; then echo "NAME must be set"; exit 1; fi)
+	docker compose run --rm control-plane npm run migration:generate -- ./src/migrations/${NAME}
+.PHONY: generate-db-migrations
 
 generate-grpc:
 	@rm -Rf ${APPS}/*/src/interfaces
