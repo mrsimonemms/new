@@ -29,7 +29,8 @@ destroy:
 generate-grpc:
 	@rm -Rf ${APPS}/*/src/interfaces
 	@rm -Rf ${APPS}/*/v1
-	@buf generate --template ${PROTO}/buf.gen.yaml ${PROTO}
+
+	@buf ls-files ${PROTO} && buf generate --template ${PROTO}/buf.gen.yaml ${PROTO} || true
 .PHONY: generate-grpc
 
 install: install-js-deps

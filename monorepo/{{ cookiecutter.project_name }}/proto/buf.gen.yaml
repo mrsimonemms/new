@@ -1,6 +1,6 @@
 version: v1
 plugins:
-  # Generate the Typescript interface for the control plane
+  # Generate the Typescript interface for the NestJS control plane
   - plugin: ts
     out: ./apps/control-plane/src/interfaces
     strategy: all

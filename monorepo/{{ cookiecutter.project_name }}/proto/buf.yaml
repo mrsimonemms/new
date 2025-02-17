@@ -8,4 +8,4 @@ lint:
     - COMMENTS
 build:
   excludes:
-    - node_modules
+    - "**/node_modules"
