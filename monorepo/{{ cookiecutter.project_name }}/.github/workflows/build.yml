@@ -26,8 +26,8 @@ jobs:
   list_components:
     runs-on: ubuntu-latest
     outputs:
-      all: '{{ "${{ steps.list.outputs.apps }}" }}'
-      apps: '{{ "${{ steps.list.outputs.all }}" }}'
+      all: '{{ "${{ steps.list.outputs.all }}" }}'
+      apps: '{{ "${{ steps.list.outputs.apps }}" }}'
       packages: '{{ "${{ steps.list.outputs.packages }}" }}'
     steps:
       - uses: actions/checkout@v4
@@ -79,7 +79,8 @@ jobs:
       - name: Install and build dependencies
         run: |
           make install generate-grpc copy-proto
-          rm -Rf components/**/node_modules
+          rm -Rf apps/**/node_modules
+          rm -Rf packages/**/node_modules
 
       - uses: actions/upload-artifact@v4
         with:
@@ -193,7 +194,7 @@ jobs:
       - test
     strategy:
       fail-fast: true
-      matrix: '{{ "${{ fromJSON(needs.list_components.outputs.apps) }}"}} '
+      matrix: '{{ "${{ fromJSON(needs.list_components.outputs.apps) }}" }}'
     steps:
       - uses: actions/checkout@v4
 

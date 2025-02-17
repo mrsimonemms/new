@@ -12,5 +12,5 @@ These apps require either:
 ## Examples .build.yaml
 
 ```yaml
-dockerfile: ../go.Dockerfile # File paths are relative
+dockerfile: ../golang.Dockerfile # File paths are relative
 ```
