@@ -8,9 +8,8 @@ ENV GOOS=linux
 ENV GOCACHE=/go/.cache
 WORKDIR /go/root
 USER 1000
-COPY . .
+COPY --chown=1000:1000 . .
 WORKDIR /go/root/apps/$APP
-RUN go install ./...
 COPY --from=cosmtrek/air /go/bin/air /go/bin/air
 CMD [ "air" ]
 
