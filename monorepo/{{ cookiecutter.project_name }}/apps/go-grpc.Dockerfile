@@ -36,6 +36,10 @@ COPY --from=dev /go/bin/grpc_health_probe /bin/grpc_health_probe
 ENTRYPOINT [ "/go/app" ]
 
 FROM scratch
+ARG GIT_COMMIT
+ARG VERSION
+ENV GIT_COMMIT="${GIT_COMMIT}"
+ENV VERSION="${VERSION}"
 WORKDIR /app
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=builder /go/app /app
