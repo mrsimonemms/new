@@ -28,32 +28,48 @@ jobs:
     outputs:
       all: '{{ "${{ steps.list.outputs.all }}" }}'
       apps: '{{ "${{ steps.list.outputs.apps }}" }}'
-      packages: '{{ "${{ steps.list.outputs.packages }}" }}'
     steps:
       - uses: actions/checkout@v4
 
-      - name: List components to build Docker images
+      - uses: dorny/paths-filter@v3
+        id: filtered
+        with:
+          list-files: json
+          filters: |
+            apps:
+              - apps/**/*
+            all:
+              - apps/**/*
+              - packages/**/*
+
+      - name: List components
         id: list
         run: |
           touch /tmp/all.yaml
           touch /tmp/apps.yaml
-          touch /tmp/packages.yaml
 
-          for pkg in $(find apps/ -maxdepth 1 -type d -and -not -name "apps"); do
-            no_dir="${pkg/apps\//}"
-            echo "- ${no_dir}" >> /tmp/apps.yaml
-            echo "- ${pkg}" >> /tmp/all.yaml
+          all='{{ "${{ steps.filtered.outputs.all_files }}" }}'
+          for row in $(echo $all | jq -r '.[] | @base64'); do
+            d=$(echo $row | base64 -d)
+            echo "${d}" | awk -F/ '{print "- " $1 "/" $2}' >> /tmp/all.yaml
           done
+          yq -i 'unique' /tmp/all.yaml || echo "[]" > /tmp/all.yaml
 
-          for pkg in $(find packages/ -maxdepth 1 -type d -and -not -name "packages"); do
-            no_dir="${pkg/packages\//}"
-            echo "- ${no_dir}" >> /tmp/packages.yaml
-            echo "- ${pkg}" >> /tmp/all.yaml
+          apps='{{ "${{ steps.filtered.outputs.apps_files }}" }}'
+          for row in $(echo $apps | jq -r '.[] | @base64'); do
+            d=$(echo $row | base64 -d)
+            echo "${d}" | awk -F/ '{print "- " $2}' >> /tmp/apps.yaml
           done
+          yq -i 'unique' /tmp/apps.yaml || echo "[]" > /tmp/apps.yaml
 
           echo "all={\"component\":$(cat /tmp/all.yaml | yq -o json -I 0)}" >> "$GITHUB_OUTPUT"
           echo "apps={\"component\":$(cat /tmp/apps.yaml | yq -o json -I 0)}" >> "$GITHUB_OUTPUT"
-          echo "packages={\"component\":$(cat /tmp/packages.yaml | yq -o json -I 0)}" >> "$GITHUB_OUTPUT"
+
+          echo "All changed directories:"
+          cat /tmp/all.yaml
+
+          echo "App changes:"
+          cat /tmp/apps.yaml
 
       - name: "Go: Set up"
         uses: actions/setup-go@v5
@@ -124,9 +140,10 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - list_components
+    if: {{ "${{ needs.list_components.outputs.all != '' && toJson(fromJson(needs.list_components.outputs.all).component) != '[]' }}" }}
     strategy:
       fail-fast: true
-      matrix: '{{ "${{ fromJSON(needs.list_components.outputs.all) }}" }}'
+      matrix: '{{ "${{ fromJson(needs.list_components.outputs.all) }}" }}'
     defaults:
       run:
         working-directory: '{{ "./${{ matrix.component }}" }}'
@@ -192,9 +209,10 @@ jobs:
       - list_components
       - pre-commit
       - test
+    if: {{ "${{ needs.list_components.outputs.apps != '' && toJson(fromJson(needs.list_components.outputs.apps).component) != '[]' }}" }}
     strategy:
       fail-fast: true
-      matrix: '{{ "${{ fromJSON(needs.list_components.outputs.apps) }}" }}'
+      matrix: '{{ "${{ fromJson(needs.list_components.outputs.apps) }}" }}'
     steps:
       - uses: actions/checkout@v4
 
