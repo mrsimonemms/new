@@ -36,7 +36,7 @@ COPY --from=builder /home/node/root/apps/$APP/dist dist
 COPY --from=builder /home/node/root/apps/$APP/node_modules node_modules
 COPY --from=builder /home/node/root/apps/$APP/package.json package.json
 COPY --from=builder /home/node/root/apps/$APP/package-lock.json package-lock.json
-RUN npm prune --production \
+RUN npm prune --omit=dev \
   && npm rebuild \
   && npm dedupe \
   && npm version ${VERSION} --no-git-tag-version --allow-same-version || true
