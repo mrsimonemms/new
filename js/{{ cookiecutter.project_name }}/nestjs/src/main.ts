@@ -1,42 +1,37 @@
-import { AppModule } from './app.module';
-import { VersioningType } from '@nestjs/common';
+import { ConsoleLogger, Logger, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { Logger, PinoLogger } from 'nestjs-pino';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+
 import { AppModule } from './app.module';
+import loggerConfig from './config/logger';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    bufferLogs: true,
-  });
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter(),
+    { logger: new ConsoleLogger(loggerConfig()) },
+  );
 
-  app.disable('x-powered-by');
   const config = app.get(ConfigService);
-  app.useLogger(app.get(Logger));
+  const logger = new Logger('bootstrap');
 
-  app.enableVersioning({
+  app.enableShutdownHooks().enableVersioning({
     type: VersioningType.URI,
     defaultVersion: '1',
   });
 
-  const logger = await app.resolve(PinoLogger);
-
-  if (config.get<boolean>('server.enableShutdownHooks')) {
-    logger.debug('Enabling shutdown hooks');
-    app.enableShutdownHooks();
-  } else {
-    logger.debug('Shutdown hooks not enabled');
-  }
-
-  const port = config.get('server.port');
-
-  logger.debug('Starting HTTP listener');
-  await app.listen(port);
-  logger.info({ port }, 'Application running');
+  logger.log('Starting server');
+  await app.listen(
+    config.getOrThrow<number>('server.port'),
+    config.getOrThrow('server.host'),
+  );
 }
 
-bootstrap().catch((err) => {
+bootstrap().catch((err: Error) => {
   /* Unlikely to get to here but a final catchall */
   console.log(err.stack);
   process.exit(1);

@@ -1,10 +1,17 @@
 {
   "image": "ghcr.io/mrsimonemms/devcontainers/full",
   "name": "devcontainer",
-  "features": {},
+  "features": {
+    {%- if cookiecutter.type == "nestjs" %}
+    "ghcr.io/devcontainers-contrib/features/nestjs-cli:2": {}
+    {%- endif %}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
+        {%- if cookiecutter.type == "nestjs" %}
+        "cweijan.vscode-mysql-client2",
+        {%- endif %}
         "esbenp.prettier-vscode"
         {%- if cookiecutter.type == "svelte" %},
         "svelte.svelte-vscode"

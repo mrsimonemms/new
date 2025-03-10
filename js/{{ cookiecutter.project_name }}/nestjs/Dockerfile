@@ -1,19 +1,19 @@
-FROM node:lts-alpine AS dev
+FROM node:lts AS dev
 ARG GIT_COMMIT
-ARG GIT_REPO
 ARG VERSION
 USER node
 WORKDIR /home/node/app
-ENV GIT_REPO="${GIT_REPO}"
 ENV GIT_COMMIT="${GIT_COMMIT}"
 ENV VERSION="${VERSION}"
 COPY --chown=node:node . .
-ENV PORT=3000
+ENV SERVER_PORT=3000
+ENV LOGGER_COLORS_ENABLED=true
+ENV LOGGER_JSON_ENABLED=false
+ENV LOGGER_LEVEL=verbose
 EXPOSE 3000
 CMD [ "npm", "run", "start:dev" ]
 
 FROM node:lts-alpine AS builder
-USER node
 USER node
 WORKDIR /home/node/app
 COPY --from=dev /home/node/app .
@@ -22,10 +22,8 @@ RUN npm ci \
 
 FROM node:lts-alpine
 ARG GIT_COMMIT
-ARG GIT_REPO
 ARG VERSION
 WORKDIR /opt/app
-ENV GIT_REPO="${GIT_REPO}"
 ENV GIT_COMMIT="${GIT_COMMIT}"
 ENV VERSION="${VERSION}"
 ENV SERVER_PORT=3000

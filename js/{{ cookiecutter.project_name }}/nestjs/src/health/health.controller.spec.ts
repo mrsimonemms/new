@@ -1,15 +1,18 @@
 import {
+  HealthCheckResult,
   HealthCheckService,
+  HealthIndicatorResult,
   TerminusModule,
   TypeOrmHealthIndicator,
 } from '@nestjs/terminus';
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { HealthController } from './health.controller';
 
 describe('HealthController', () => {
   let controller: HealthController;
-  let service: any;
-  let dbCheck: any;
+  let service: Partial<HealthCheckService>;
+  let dbCheck: Partial<TypeOrmHealthIndicator>;
 
   beforeEach(async () => {
     service = {
@@ -39,13 +42,25 @@ describe('HealthController', () => {
   });
 
   it('should return a successful result', async () => {
-    service.check.mockResolvedValue('OK');
-    dbCheck.pingCheck.mockResolvedValue('DB OK');
+    const serviceResult: HealthCheckResult = {
+      status: 'ok',
+      details: {},
+    };
+    const dbResult: HealthIndicatorResult = {
+      database: {
+        status: 'up',
+      },
+    };
+    const serviceMock = jest
+      .spyOn(service, 'check')
+      .mockResolvedValue(serviceResult);
 
-    await expect(controller.check()).resolves.toBe('OK');
+    jest.spyOn(dbCheck, 'pingCheck').mockResolvedValue(dbResult);
+
+    await expect(controller.check()).resolves.toBe(serviceResult);
 
     expect(service.check).toHaveBeenCalled();
 
-    await expect(service.check.mock.calls[0][0][0]()).resolves.toBe('DB OK');
+    await expect(serviceMock.mock.calls[0][0][0]()).resolves.toBe(dbResult);
   });
 });

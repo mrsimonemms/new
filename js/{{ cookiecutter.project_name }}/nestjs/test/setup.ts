@@ -1,11 +1,12 @@
-process.env.LOG_LEVEL = 'silent';
-
-import { INestApplication } from '@nestjs/common';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as supertest from 'supertest';
+
 import { AppModule } from '../src/app.module';
 
-let app: INestApplication;
+let app: NestFastifyApplication | undefined;
 
 export const destroyApp = async () => {
   if (app) {
@@ -16,20 +17,20 @@ export const destroyApp = async () => {
   }
 };
 
-export const request = async (): Promise<
-  () => supertest.SuperTest<supertest.Test>
-> => {
-  const moduleFixture: TestingModule = await Test.createTestingModule({
+export const request = async (): Promise<NestFastifyApplication> => {
+  const moduleRef: TestingModule = await Test.createTestingModule({
     imports: [AppModule],
   }).compile();
 
-  app = moduleFixture.createNestApplication();
+  app = moduleRef.createNestApplication<NestFastifyApplication>(
+    new FastifyAdapter(),
+  );
+
   await app.init();
+  await app.getHttpAdapter().getInstance().ready();
 
-  return () => supertest(app.getHttpServer());
+  return app;
 };
-
-export { supertest };
 
 // Ensure that the test app is correctly destroyed after use
 afterEach(() => destroyApp());

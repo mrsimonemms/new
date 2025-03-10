@@ -1,4 +1,4 @@
-import { Controller, Get, VERSION_NEUTRAL } from '@nestjs/common';
+import { Controller, Get, Inject, VERSION_NEUTRAL } from '@nestjs/common';
 import {
   HealthCheck,
   HealthCheckService,
@@ -10,18 +10,22 @@ import {
   version: VERSION_NEUTRAL,
 })
 export class HealthController {
-  constructor(
-    private health: HealthCheckService,
-    private db: TypeOrmHealthIndicator,
-  ) {}
+  @Inject(TypeOrmHealthIndicator)
+  private readonly db: TypeOrmHealthIndicator;
+
+  @Inject(HealthCheckService)
+  private readonly health: HealthCheckService;
 
   @Get()
   @HealthCheck()
   check() {
+    // Allow 1 second before timeout
+    const timeout = 1000;
+
     return this.health.check([
       () =>
         this.db.pingCheck('database', {
-          timeout: 30,
+          timeout,
         }),
     ]);
   }

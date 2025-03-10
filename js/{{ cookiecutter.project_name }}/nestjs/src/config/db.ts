@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import * as path from 'path';
+import { join } from 'node:path';
 import { LoggerOptions } from 'typeorm/logger/LoggerOptions';
 
 export default registerAs('db', (): TypeOrmModuleOptions => {
@@ -37,6 +37,8 @@ export default registerAs('db', (): TypeOrmModuleOptions => {
     synchronize: process.env.DB_SYNC === 'true',
     autoLoadEntities: true,
     logging: (logging as LoggerOptions) ?? true,
-    migrations: [path.join(__dirname, '..', 'migrations', '*{.ts,.js}')],
+    migrations: [join(__dirname, '..', 'migrations', '*{.ts,.js}')],
+    retryAttempts: Number(process.env.DB_RETRY_ATTEMPTS ?? 10),
+    retryDelay: Number(process.env.DB_RETRY_DELAY ?? 3000),
   };
 });
