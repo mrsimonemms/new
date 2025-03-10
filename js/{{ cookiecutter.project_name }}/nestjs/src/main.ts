@@ -1,6 +1,12 @@
-import { ConsoleLogger, Logger, VersioningType } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  ConsoleLogger,
+  Logger,
+  ValidationPipe,
+  VersioningType,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import {
   FastifyAdapter,
   NestFastifyApplication,
@@ -19,10 +25,19 @@ async function bootstrap() {
   const config = app.get(ConfigService);
   const logger = new Logger('bootstrap');
 
-  app.enableShutdownHooks().enableVersioning({
-    type: VersioningType.URI,
-    defaultVersion: '1',
-  });
+  app
+    .enableShutdownHooks()
+    .enableVersioning({
+      type: VersioningType.URI,
+      defaultVersion: '1',
+    })
+    .useGlobalPipes(
+      new ValidationPipe({
+        transform: true,
+        whitelist: true,
+      }),
+    )
+    .useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   logger.log('Starting server');
   await app.listen(
