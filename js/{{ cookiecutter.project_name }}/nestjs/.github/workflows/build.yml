@@ -77,10 +77,6 @@ jobs:
           node-version: lts/*
           cache: "npm"
 
-      - name: Run dependencies
-        run: |
-          docker-compose up -d mysql
-
       - name: Install and test
         run: |
           npm ci
