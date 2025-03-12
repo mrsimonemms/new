@@ -13,7 +13,7 @@ USER 1000
 COPY . .
 WORKDIR /go/root/apps/$APP
 RUN go install ./... \
-  && wget -qO/bin/grpc_health_probe https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/${GRPC_HEALTH_PROBE_VERSION}/grpc_health_probe-linux-amd64 \
+  && wget -qO /go/bin/grpc_health_probe https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/${GRPC_HEALTH_PROBE_VERSION}/grpc_health_probe-linux-amd64 \
   && chmod +x /go/bin/grpc_health_probe
 COPY --from=cosmtrek/air /go/bin/air /go/bin/air
 CMD [ "air" ]
