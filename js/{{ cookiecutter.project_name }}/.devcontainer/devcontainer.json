@@ -3,7 +3,7 @@
   "name": "devcontainer",
   "features": {
     {%- if cookiecutter.type == "nestjs" %}
-    "ghcr.io/devcontainers-contrib/features/nestjs-cli:2": {}
+    "ghcr.io/devcontainers-extra/features/nestjs-cli:2": {}
     {%- endif %}
   },
   "customizations": {
