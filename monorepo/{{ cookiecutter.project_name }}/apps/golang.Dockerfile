@@ -6,8 +6,8 @@ ARG VERSION
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOCACHE=/go/.cache
-WORKDIR /go/root
 USER 1000
+WORKDIR /go/root
 COPY --chown=1000:1000 . .
 WORKDIR /go/root/apps/$APP
 COPY --from=cosmtrek/air /go/bin/air /go/bin/air

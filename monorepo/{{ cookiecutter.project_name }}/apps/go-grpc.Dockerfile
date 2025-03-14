@@ -8,8 +8,8 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOCACHE=/go/.cache
 ENV GRPC_HEALTH_PROBE_VERSION="${GRPC_HEALTH_PROBE_VERSION}"
-WORKDIR /go/root
 USER 1000
+WORKDIR /go/root
 COPY . .
 WORKDIR /go/root/apps/$APP
 RUN go install ./... \
