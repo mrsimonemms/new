@@ -51,20 +51,14 @@ jobs:
           all='{{ "${{ steps.filtered.outputs.all_files }}" }}'
           for row in $(echo $all | jq -r '.[] | @base64'); do
             d=$(echo $row | base64 -d)
-            f=$(echo "${d}" | awk -F/ '{print "- " $1 "/" $2}')
-            if [[ -d "${f}" ]]; then
-              echo "${f}" >> /tmp/all.yaml
-            fi
+            echo "${d}" | awk -F/ '{print "- " $1 "/" $2}' >> /tmp/all.yaml
           done
           yq -i 'unique' /tmp/all.yaml || echo "[]" > /tmp/all.yaml
 
           apps='{{ "${{ steps.filtered.outputs.apps_files }}" }}'
           for row in $(echo $apps | jq -r '.[] | @base64'); do
             d=$(echo $row | base64 -d)
-            f=$(echo "${d}" | awk -F/ '{print "- " $2}')
-            if [[ -d "${f}" ]]; then
-              echo "${f}" >> /tmp/apps.yaml
-            fi
+            echo "${d}" | awk -F/ '{print "- " $2}' >> /tmp/apps.yaml
           done
           yq -i 'unique' /tmp/apps.yaml || echo "[]" > /tmp/apps.yaml
 
