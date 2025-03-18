@@ -1,18 +1,17 @@
-version: v1
+version: v2
 plugins:
   # Generate the Typescript interface for the NestJS control plane
-  - plugin: ts
-    out: ./apps/control-plane/src/interfaces
-    strategy: all
-    path: ./node_modules/ts-proto/protoc-gen-ts_proto
+  - local: ./node_modules/ts-proto/protoc-gen-ts_proto
+    out: ./apps/provider-github/src/interfaces
     opt: nestJs=true,returnObservable=true
+    strategy: all
 
   # Generate the Golang files for the service
-  - plugin: go
-    out: ./apps
-    strategy: all
+  - local: protoc-gen-go
+    out: ./packages
     opt: paths=source_relative
-  - plugin: go-grpc
-    out: ./apps
     strategy: all
+  - local: protoc-gen-go-grpc
+    out: ./packages
     opt: paths=source_relative
+    strategy: all
