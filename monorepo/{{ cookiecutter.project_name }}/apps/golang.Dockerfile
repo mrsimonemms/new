@@ -11,7 +11,7 @@ WORKDIR /go/root
 COPY --chown=1000:1000 . .
 WORKDIR /go/root/apps/$APP
 COPY --from=cosmtrek/air /go/bin/air /go/bin/air
-CMD [ "air" ]
+CMD [ "air", "-build.stop_on_error", "true", "-build.send_interrupt", "true", "-build.rerun", "true" ]
 
 FROM golang AS builder
 ARG APP

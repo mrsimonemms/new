@@ -16,7 +16,7 @@ RUN go install ./... \
   && wget -qO /go/bin/grpc_health_probe https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/${GRPC_HEALTH_PROBE_VERSION}/grpc_health_probe-linux-amd64 \
   && chmod +x /go/bin/grpc_health_probe
 COPY --from=cosmtrek/air /go/bin/air /go/bin/air
-CMD [ "air" ]
+CMD [ "air", "-build.stop_on_error", "true", "-build.send_interrupt", "true", "-build.rerun", "true" ]
 
 FROM golang AS builder
 ARG APP
