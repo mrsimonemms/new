@@ -35,7 +35,7 @@ jobs:
 
       - uses: dorny/paths-filter@v3
         id: filtered
-        if:  {{ "${{ !startsWith(github.event.ref, 'refs/tags/') }}" }}
+        if: {{ "${{ !startsWith(github.event.ref, 'refs/tags/') }}" }}
         with:
           list-files: json
           filters: |
