@@ -278,7 +278,7 @@ jobs:
             # Tag name (usually vX.Y.Z)
             IMG_AND_TAG_NAME="${IMG_AND_TAG_NAME},${IMG_NAME}:{{ '${{ steps.branch-name.outputs.tag }}' }}"
 
-            echo "image_name=${IMG_NAME}" >> "$GITHUB_OUTPUT"
+            echo "image_name=${IMG_AND_TAG_NAME}" >> "$GITHUB_OUTPUT"
             echo "platforms=linux/amd64,linux/arm64" >> "$GITHUB_OUTPUT"
             echo "push=true" >> "$GITHUB_OUTPUT"
             echo "version={{ '${{ steps.branch-name.outputs.tag }}' }}" >> "$GITHUB_OUTPUT"
