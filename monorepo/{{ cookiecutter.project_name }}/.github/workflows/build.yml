@@ -35,7 +35,7 @@ jobs:
 
       - uses: dorny/paths-filter@v3
         id: filtered
-        if: ${{ !startsWith(github.event.ref, 'refs/tags/') }}
+        if:  {{ "${{ !startsWith(github.event.ref, 'refs/tags/') }}" }}
         with:
           list-files: json
           filters: |
@@ -51,7 +51,7 @@ jobs:
           touch /tmp/all.yaml
           touch /tmp/apps.yaml
 
-          if [ "${{ startsWith(github.event.ref, 'refs/tags/') }}" = "true"  ];
+          if [ "{{ "${{ startsWith(github.event.ref, 'refs/tags/') }}" }}" = "true"  ];
           then
             # Tag build - use everything
             apps="$(find apps/ -maxdepth 1 -type d -and -not -name "apps" | jq -Rrc 'split(",")')"
@@ -60,8 +60,8 @@ jobs:
             all="$(jq -rc --argjson apps "${apps}" --argjson pkgs "${pkgs}" -n '$apps + $pkgs')"
           else
             # Branch build - use filtered
-            all='${{ steps.filtered.outputs.all_files }}'
-            apps='${{ steps.filtered.outputs.apps_files }}'
+            all='{{ "${{ steps.filtered.outputs.all_files }}" }}'
+            apps='{{ "${{ steps.filtered.outputs.apps_files }}" }}'
           fi
 
           for row in $(echo $all | jq -r '.[] | @base64'); do
