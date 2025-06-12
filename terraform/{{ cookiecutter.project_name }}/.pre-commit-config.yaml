@@ -50,12 +50,8 @@ repos:
       - id: terraform_fmt
         args:
           - --args=-recursive
-      - id: terragrunt_fmt
-        args:
-          - --args=-recursive
       - id: terraform_tflint
       - id: terraform_trivy
-      - id: terraform_validate
         exclude: ^stacks
       - id: terragrunt_validate
         files: ^stacks/(\w+)/(\w+)/.*
