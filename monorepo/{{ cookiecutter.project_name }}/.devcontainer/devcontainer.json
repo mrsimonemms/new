@@ -16,7 +16,7 @@
         "esbenp.prettier-vscode",
         "svelte.svelte-vscode",
         "tamasfe.even-better-toml",
-        "zxh404.vscode-proto3",
+        "DrBlury.protobuf-vsc",
         "cweijan.vscode-mysql-client2"
       ],
       "settings": {}
