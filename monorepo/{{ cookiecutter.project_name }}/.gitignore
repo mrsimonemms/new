@@ -21,3 +21,5 @@ go.work.sum
 **/*/src/interfaces
 # Avoid duplication from Docker Compose volumes
 **/*/proto
+
+.claude
