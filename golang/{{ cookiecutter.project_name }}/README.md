@@ -1,8 +1,5 @@
 # {{ cookiecutter.project_name }}
 
-<!-- markdownlint-disable-next-line MD013 MD034 -->
-[![Go Report Card](https://goreportcard.com/badge/{{ cookiecutter.repo }})](https://goreportcard.com/report/{{ cookiecutter.repo }})
-
 {{ cookiecutter.description }}
 
 <!-- toc -->
