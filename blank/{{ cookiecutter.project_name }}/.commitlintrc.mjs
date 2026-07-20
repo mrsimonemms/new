@@ -4,6 +4,6 @@ export default {
     (message) =>
       message.startsWith("deps:") ||
       message.startsWith("deps(") ||
-      message.includes("(deps)"),
+      message.includes("ci(deps):"),
   ],
 };
