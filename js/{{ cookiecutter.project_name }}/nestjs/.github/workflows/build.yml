@@ -17,7 +17,7 @@ jobs:
     env:
       GITHUB_TOKEN: '{{ "${{ secrets.GITHUB_TOKEN }}" }}'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # fetch-depth is required
 
@@ -26,7 +26,7 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # fetch-depth is required
 
@@ -69,7 +69,7 @@ jobs:
         ports:
           - 3306:3306
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up JS
         uses: actions/setup-node@v6
@@ -91,7 +91,7 @@ jobs:
       - pre-commit
       - test
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
