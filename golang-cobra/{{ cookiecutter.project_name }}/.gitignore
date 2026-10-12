@@ -9,4 +9,5 @@ Thumbs.db
 .envrc
 go.work.sum
 
-.claude
+.claude/*
+!.claude/settings.json

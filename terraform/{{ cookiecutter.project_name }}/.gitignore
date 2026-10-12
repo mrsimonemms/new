@@ -15,4 +15,5 @@ Thumbs.db
 *.tfstate.*
 **/.terragrunt-cache/*
 
-.claude
+.claude/*
+!.claude/settings.json

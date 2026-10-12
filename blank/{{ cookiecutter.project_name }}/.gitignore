@@ -10,4 +10,5 @@ Thumbs.db
 .devbox
 .envrc
 
-.claude
+.claude/*
+!.claude/settings.json

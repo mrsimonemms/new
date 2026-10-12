@@ -25,4 +25,5 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 {%- endif %}
 
-.claude
+.claude/*
+!.claude/settings.json

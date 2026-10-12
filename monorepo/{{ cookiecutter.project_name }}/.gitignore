@@ -22,4 +22,5 @@ go.work.sum
 # Avoid duplication from Docker Compose volumes
 **/*/proto
 
-.claude
+.claude/*
+!.claude/settings.json
